@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>home</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}" />
+  </head>
+  <body>
+    <h1>USER DETAILS UPDATION</h1>
+
+    <h4>
+      {% with messages = get_flashed_messages() %} {% if messages %} {% for
+      message in messages %} {{ message }} {% endfor %} {% endif %} {% endwith
+      %}
+    </h4>
+
+    <p><a href="{{url_for('addUsers')}}">Add Users</a></p>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>AGE</th>
+        <th>CITY</th>
+        <th>EDIT</th>
+        <th>DELETE</th>
+      </tr>
+      {% for i in datas %}
+      <tr>
+        <td>{{i.ID}}</td>
+        <td>{{i.NAME}}</td>
+        <td>{{i.AGE}}</td>
+        <td>{{i.CITY}}</td>
+        <td><a href="{{url_for('editUser',id=i.ID)}}">Edit</a></td>
+
+        <td>
+          <a
+            onclick="return confirm('Are you sure to delete?');"
+            #displAY
+            js
+            conforamtion
+            href="{{url_for('deleteUser',id=i.ID)}}"
+            #function
+            name
+            del
+            >Delete</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
